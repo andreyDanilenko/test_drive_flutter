@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_drive/features/post_screen/view/view.dart';
-import 'features/posts_screen/posts.dart';
+import 'package:test_drive/features/post_screen/post.dart';
+import 'package:test_drive/features/posts_screen/posts.dart';
 
 void main() {
   runApp(const MyApp());
