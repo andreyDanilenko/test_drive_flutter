@@ -5,11 +5,11 @@ class PostsListWidget extends StatelessWidget {
   const PostsListWidget({
     super.key,
     required this.post,
-    required this.subpost,
+    required this.subPost,
   });
 
   final String post;
-  final String subpost;
+  final String subPost;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class PostsListWidget extends StatelessWidget {
         width: 25,
       ),
       title: Text(post, style: theme.textTheme.bodyMedium),
-      subtitle: Text(subpost, style: theme.textTheme.bodySmall),
+      subtitle: Text(subPost, style: theme.textTheme.bodySmall),
       trailing: const Icon(Icons.arrow_forward_ios, color: Colors.black),
       onTap: () {
         Navigator.of(context).pushNamed('/detail-item', arguments: post);
