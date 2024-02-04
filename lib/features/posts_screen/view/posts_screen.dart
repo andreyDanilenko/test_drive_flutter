@@ -1,7 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:test_drive/features/posts_screen/widgets/widgets.dart';
-import 'package:test_drive/repositories/models/post.dart';
-import 'package:test_drive/repositories/posts/posts_repository.dart';
+import 'package:test_drive/repositories/posts/posts.dart';
 
 class PostsScreen extends StatefulWidget {
   const PostsScreen({super.key});
@@ -42,7 +43,7 @@ class _PostsScreenState extends State<PostsScreen> {
   }
 
   void _getPostsList() async {
-    _postsList = await PostsRepository().getPostsList();
+    _postsList = await GetIt.I<AbstractPostsRepository>().getPostsList();
     setState(() {});
   }
 }

@@ -1,9 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:test_drive/repositories/models/post.dart';
+import 'package:test_drive/repositories/posts/posts.dart';
 
-class PostsRepository {
-  Dio dio = Dio();
+class PostsRepository implements AbstractPostsRepository {
+  final Dio dio;
 
+  const PostsRepository({required this.dio});
+
+  @override
   Future<List<Post>> getPostsList() async {
     try {
       final response =
