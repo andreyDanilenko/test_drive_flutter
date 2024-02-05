@@ -1,6 +1,7 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:test_drive/features/posts_screen/bloc/posts_list_bloc.dart';
 import 'package:test_drive/features/posts_screen/widgets/widgets.dart';
 import 'package:test_drive/repositories/posts/posts.dart';
 
@@ -12,11 +13,13 @@ class PostsScreen extends StatefulWidget {
 }
 
 class _PostsScreenState extends State<PostsScreen> {
+  final _postsListBloc = PostsListBloc(GetIt.I<AbstractPostsRepository>());
   List<Post>? _postsList;
 
   @override
   void initState() {
-    _getPostsList();
+    // _getPostsList();
+    _postsListBloc.add(LoadPostsListEvent());
     super.initState();
   }
 
@@ -25,25 +28,33 @@ class _PostsScreenState extends State<PostsScreen> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: theme.colorScheme.inversePrimary,
-        title: const Text('List Screen'),
-      ),
-      body: _postsList == null
-          ? const Center(child: CircularProgressIndicator())
-          : ListView.separated(
-              itemCount: _postsList!.length,
-              separatorBuilder: (context, index) => (const Divider()),
-              itemBuilder: (context, i) {
-                final post = _postsList![i].title;
-                const subPost = 'subpost';
-                return PostsListWidget(post: post, subPost: subPost);
-              }),
-    );
+        appBar: AppBar(
+          backgroundColor: theme.colorScheme.inversePrimary,
+          title: const Text('List Screen'),
+        ),
+        body: BlocBuilder<PostsListBloc, PostsListState>(
+            bloc: _postsListBloc,
+            builder: (context, state) {
+              if (state is PostsListLoaded) {
+                return ListView.separated(
+                    itemCount: state.postsList.length,
+                    separatorBuilder: (context, index) => (const Divider()),
+                    itemBuilder: (context, i) {
+                      final post = state.postsList[i].title;
+                      const subPost = 'subpost';
+                      return PostsListWidget(post: post, subPost: subPost);
+                    });
+              }
+              if (state is PostsListLoadingFailure) {
+                return const Center(
+                  child: Text('Something went wrong'),
+                );
+              }
+              return const Center(child: CircularProgressIndicator());
+            }));
   }
-
-  void _getPostsList() async {
-    _postsList = await GetIt.I<AbstractPostsRepository>().getPostsList();
-    setState(() {});
-  }
+  // void _getPostsList() async {
+  //   _postsList = await GetIt.I<AbstractPostsRepository>().getPostsList();
+  //   setState(() {});
+  // }
 }
