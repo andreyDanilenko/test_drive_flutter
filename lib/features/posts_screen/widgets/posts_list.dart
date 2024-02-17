@@ -26,9 +26,7 @@ class PostsListWidget extends StatelessWidget {
       subtitle: Text(subPost, style: theme.textTheme.bodySmall),
       trailing: const Icon(Icons.arrow_forward_ios, color: Colors.black),
       onTap: () {
-        Navigator.of(context).pushNamed('/detail-item', arguments: post);
-        // Navigator.of(context).push(
-        //     MaterialPageRoute(builder: (context) => const ItemScreen()));
+        Navigator.of(context).pushNamed('/detail-post', arguments: post);
       },
     );
   }

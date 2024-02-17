@@ -7,11 +7,11 @@ import 'repositories/posts/posts.dart';
 
 void main() {
   final talker = Talker();
+  talker.debug('Thinking about order new one 🤔');
+
   GetIt.I.registerSingleton(talker);
   GetIt.I<Talker>().debug('Talker started...');
   GetIt.I.registerLazySingleton<AbstractPostsRepository>(
       () => PostsRepository(dio: Dio()));
-  // GetIt.I.registerLazySingleton(PostsRepository(dio: Dio()));
-  // GetIt.I.registerFactory();
   runApp(const App());
 }
