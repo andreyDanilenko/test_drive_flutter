@@ -16,11 +16,11 @@ class _CryptoListScreenState extends State<CryptoListScreen> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: theme.colorScheme.inversePrimary,
-          title: const Text('Crypto list Screen'),
+          title: const Text('Crypto tile Screen'),
         ),
         body: ListView.separated(
             itemBuilder: (context, i) {
-              return const CryptoCoinsListWidget();
+              return const CryptoCoinsTileWidget();
             },
             separatorBuilder: (context, index) => const Divider(),
             itemCount: 10));

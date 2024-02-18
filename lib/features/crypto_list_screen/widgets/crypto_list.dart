@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class CryptoCoinsListWidget extends StatelessWidget {
-  const CryptoCoinsListWidget({
+class CryptoCoinsTileWidget extends StatelessWidget {
+  const CryptoCoinsTileWidget({
     super.key,
   });
 
