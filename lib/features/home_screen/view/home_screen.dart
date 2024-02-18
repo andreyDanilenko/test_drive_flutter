@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () {
                 Navigator.pushNamed(context, '/crypto-coins');
               },
-              child: const Text('Crypto coins list'),
+              child: const Text('Crypto list'),
             ),
           ],
         ),

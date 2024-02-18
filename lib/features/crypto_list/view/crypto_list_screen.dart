@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_drive/features/crypto_list/widgets/widgets.dart';
+import 'package:test_drive/repositories/crypto_coins/crypto_coins.dart';
 
 class CryptoListScreen extends StatefulWidget {
   const CryptoListScreen({super.key});
@@ -9,20 +10,39 @@ class CryptoListScreen extends StatefulWidget {
 }
 
 class _CryptoListScreenState extends State<CryptoListScreen> {
+  List<CryptoCoin>? _cryptoCoinsList;
+
+  @override
+  void initState() {
+    _loadCryptoCoins();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: theme.colorScheme.inversePrimary,
-          title: const Text('Crypto tile Screen'),
-        ),
-        body: ListView.separated(
-            itemBuilder: (context, i) {
-              return const CryptoCoinsTileWidget();
-            },
-            separatorBuilder: (context, index) => const Divider(),
-            itemCount: 10));
+      appBar: AppBar(
+        backgroundColor: theme.colorScheme.inversePrimary,
+        title: const Text('Crypto List'),
+      ),
+      body: (_cryptoCoinsList == null)
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : ListView.separated(
+              itemBuilder: (context, i) {
+                final coin = _cryptoCoinsList![i];
+                return CryptoListWidget(coin: coin);
+              },
+              separatorBuilder: (context, index) => const Divider(),
+              itemCount: _cryptoCoinsList!.length),
+    );
+  }
+
+  Future<void> _loadCryptoCoins() async {
+    _cryptoCoinsList = await CryptoCoinsRepository().getCryptoCoinsList();
+    setState(() {});
   }
 }
