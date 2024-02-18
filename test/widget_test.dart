@@ -28,3 +28,5 @@ void main() {
   });
 }
 // https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH&tsyms=USD,EUR
+// https://rickandmortyapi.com/documentation#episode
+// https://jsonplaceholder.typicode.com/

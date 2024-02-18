@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/posts');
