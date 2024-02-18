@@ -1,8 +1,8 @@
 import 'package:test_drive/features/home_screen/home.dart';
 import 'package:test_drive/features/post_screen/post.dart';
 import 'package:test_drive/features/posts_screen/posts.dart';
-import 'package:test_drive/features/crypto_list_screen/crypto_list.dart';
-import 'package:test_drive/features/crypto_coin_screen/crypto_coin.dart';
+import 'package:test_drive/features/crypto_list/crypto_list.dart';
+import 'package:test_drive/features/crypto_coin/crypto_coin.dart';
 
 final routes = {
   '/': (context) => const HomeScreen(),

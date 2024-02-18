@@ -24,3 +24,6 @@ class CryptoCoinsRepository implements AbstractCryptoCoinsRepository {
     }
   }
 }
+
+// https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,BNB,COMP,ENJ,IOTX,LINK,LUNA&tsyms=USD,EUR
+// https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,BNB,COMP,ENJ,IOTX,LINK,LUNA&tsyms=USD,EUR

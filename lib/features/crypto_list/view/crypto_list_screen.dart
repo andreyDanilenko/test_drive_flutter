@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_drive/features/crypto_list_screen/widgets/widgets.dart';
+import 'package:test_drive/features/crypto_list/widgets/widgets.dart';
 
 class CryptoListScreen extends StatefulWidget {
   const CryptoListScreen({super.key});
