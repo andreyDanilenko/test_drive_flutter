@@ -2,9 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:test_drive/repositories/crypto_coins/crypto_coins.dart';
 
 class CryptoCoinsRepository implements AbstractCryptoCoinsRepository {
-  final Dio dio = Dio();
+  final Dio dio;
 
-  // const CryptoCoinsRepository({required this.dio});
+  const CryptoCoinsRepository({required this.dio});
 
   @override
   Future<List<CryptoCoin>> getCryptoCoinsList() async {
