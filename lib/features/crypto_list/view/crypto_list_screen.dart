@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:test_drive/features/crypto_list/bloc/crypto_list_bloc.dart';
 import 'package:test_drive/features/crypto_list/widgets/widgets.dart';
 import 'package:test_drive/repositories/crypto_coins/crypto_coins.dart';
 
@@ -13,9 +14,13 @@ class CryptoListScreen extends StatefulWidget {
 class _CryptoListScreenState extends State<CryptoListScreen> {
   List<CryptoCoin>? _cryptoCoinsList;
 
+  final _cryptoListBloc =
+      CryptoListBloc(GetIt.I<AbstractCryptoCoinsRepository>());
+
   @override
   void initState() {
     _loadCryptoCoins();
+    _cryptoListBloc.add(LoadCryptoListEvent());
     super.initState();
   }
 
