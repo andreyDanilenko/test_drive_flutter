@@ -10,7 +10,7 @@ class CryptoCoinScreen extends StatefulWidget {
 }
 
 class _CryptoCoinScreenState extends State<CryptoCoinScreen> {
-  String post = '';
+  String? post;
 
   @override
   void didChangeDependencies() {
