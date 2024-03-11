@@ -23,8 +23,23 @@ class CryptoCoinsRepository implements AbstractCryptoCoinsRepository {
             priceInUSD: price,
             name: e.key);
       }).toList();
-      // debugPrint(cryptoCoinsList.toString());
       return cryptoCoinsList;
+    } catch (e) {
+      throw Exception('Error: $e');
+    }
+  }
+
+  @override
+  Future<CryptoCoinDetail> getCoinDetails(String currencyCode) async {
+    try {
+      final response = await dio.get(
+          'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=$currencyCode&tsyms=USD');
+
+      final data = response.data as Map<String, dynamic>;
+      final dataRaw = data['RAW'] as Map<String, dynamic>;
+      final coinData = dataRaw[currencyCode] as Map<String, dynamic>;
+      final usdData = coinData['USD'] as Map<String, dynamic>;
+      return CryptoCoinDetail.fromJson(usdData);
     } catch (e) {
       throw Exception('Error: $e');
     }
