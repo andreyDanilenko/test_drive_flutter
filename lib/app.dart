@@ -10,6 +10,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       theme: lightTheme,
       routes: routes,
+      navigatorObservers: [],
     );
   }
 }
